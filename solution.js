@@ -81,3 +81,19 @@ var findDuplicates = function(nums) {
     }
   })
 };
+// 效率最高
+// 分析下就是，我把数组中的每一项当做下标，然后遍历这个数组
+// 判断是不是《0，如果不是，那么久把它*-1，这样，下次再遇到同一个数
+// 还会判断，然后判断诚《0，说明之前出现过
+
+// var findDuplicates = function(nums) {
+//   var result = [];
+//   for (var i = 0; i < nums.length; i++) {
+//       var abs = Math.abs(nums[i]);
+//       if (nums[abs - 1] < 0) {
+//           result.push(abs);
+//       }
+//       nums[abs - 1] *= -1;
+//   }
+//   return result;
+// };
