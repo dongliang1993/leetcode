@@ -44,3 +44,40 @@ var findMaxConsecutiveOnes = function(nums) {
     return Math.max(prev, next.length)
   }, 0)
 };
+
+// 第三道
+// 442. Find All Duplicates in an Array
+// Given an array of integers, 1 ≤ a[i] ≤ n (n = size of array), some elements appear twice and others appear once.
+// Find all the elements that appear twice in this array.
+// Could you do it without extra space and in O(n) runtime?
+// Example:
+// Input:
+// [4,3,2,7,8,2,3,1]
+// Output:
+// [2,3]
+
+// 妈的 这个结果是对的，但是超时了
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+// var findDuplicates = function(nums) {
+//   return nums.filter(num => {
+//     if (!result.includes(num)) {
+//       result.push(num)
+//     } else {
+//       return num
+//     }
+//   })
+// };
+// 蛋疼 效率不是很高
+var findDuplicates = function(nums) {
+  const map = {}
+  return nums.filter(num => {
+    if (map[num]) {
+      return num
+    } else {
+      map[num] = 1
+    }
+  })
+};
