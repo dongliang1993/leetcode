@@ -16,17 +16,19 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
+// https://algo.itcharge.cn/Solutions/0200-0299/reverse-linked-list/#%E6%80%9D%E8%B7%AF-1-%E8%BF%AD%E4%BB%A3
 var reverseList = function (head) {
-  let prev = null
+  let reversedList = null
+  let current = head
 
-  while (head) {
-    const next = head.next
-    head.next = prev
-    prev = head
-    head = next
+  while (current) {
+    const next = current.next
+    current.next = reversedList
+    reversedList = current
+    current = next
   }
 
-  return prev
+  return reversedList
 };
 // @lc code=end
 
