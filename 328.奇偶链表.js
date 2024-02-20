@@ -41,7 +41,9 @@ var oddEvenList = function (head) {
     // 将奇数节点前进到下一个奇数节点
     odd = odd.next
 
+    // 偶数位置节点指向下一个偶数位置节点
     even.next = odd.next
+    // 更新偶数位置节点
     even = even.next
   }
 
@@ -84,6 +86,22 @@ var oddEvenList1 = function (head) {
 
   return result.next
 };
+
+var oddEvenList = function (head) {
+  let oddNode = head
+  let evenNode = head.next
+
+  while (evenNode && evenNode.next) {
+    oddNode.next = evenNode.next
+    oddNode = oddNode.next
+
+    const lastOdd = evenHead.next
+    lastOdd.next = evenHead
+    oddHead.next = lastOdd
+
+  }
+}
+
 // @lc code=end
 
 

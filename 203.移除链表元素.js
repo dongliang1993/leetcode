@@ -13,10 +13,7 @@
  * }
  */
 
-// function ListNode(val, next) {
-//   this.val = (val === undefined ? 0 : val)
-//   this.next = (next === undefined ? null : next)
-// }
+
 
 /**
  * @param {ListNode} head
@@ -43,6 +40,11 @@ var removeElements = function (head, val) {
 
   return dummy.next
 };
+
+function ListNode(val, next) {
+  this.val = (val === undefined ? 0 : val)
+  this.next = (next === undefined ? null : next)
+}
 // @lc code=end
 
 
