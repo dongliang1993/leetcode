@@ -17,38 +17,35 @@
  * @return {ListNode}
  */
 var removeNthFromEnd = function (head, n) {
-  // 因为 n 是有效的，所以不会出现只有一个节点但是删除 5 这种情况
-  // 所以如果只有一个节点时，就是删掉自己
-  if (!head || !head.next) {
-    return null
-  }
+  // 创建一个虚拟头节点，以处理删除头节点的情况
+  const dummy = new ListNode(0);
+  dummy.next = head;
+  let fast = dummy;
+  let slow = dummy;
 
-  let fast = head
-  let slow = head
-
-  // 让快指针领先 n 步
-  for (let i = 0; i < n; i++) {
-    fast = fast.next
-  }
-
-  // 如果快指针走到了最后，意味着是删除头节点
-  if (fast === null) {
-    return head.next
+  // 快指针先移动 n+1 步，因为要删除的是倒数第 n 个节点的前一个节点
+  for (let i = 0; i <= n; i++) {
+    fast = fast.next;
   }
 
   // 让快指针和慢指针每次同时前进一步
   // 直到快指针到最后
-  while (fast.next) {
+  while (fast) {
     fast = fast.next
     slow = slow.next
   }
 
+  // 删除倒数第 n 个节点
   slow.next = slow.next.next
 
   // 返回链表的头结点
-  return head
-
+  return dummy.next
 };
+
+function ListNode(val) {
+  this.val = val;
+  this.next = null;
+}
 
 var removeNthFromEnd1 = function (head, n) {
   if (!head || !head.next) {
@@ -82,3 +79,6 @@ var removeNthFromEnd1 = function (head, n) {
 
 
 }
+// @after-stub-for-debug-begin
+module.exports = removeNthFromEnd;
+// @after-stub-for-debug-end
