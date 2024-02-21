@@ -13,6 +13,11 @@
  * }
  */
 
+function ListNode(val) {
+  this.val = val;
+  this.next = null;
+}
+
 /**
  * @param {ListNode} head
  * @return {boolean}
@@ -62,3 +67,7 @@ var hasCycle1 = function (head) {
 };
 // @lc code=end
 
+
+// @after-stub-for-debug-begin
+module.exports = hasCycle;
+// @after-stub-for-debug-end
