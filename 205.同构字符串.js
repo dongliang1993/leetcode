@@ -12,35 +12,36 @@
  */
 var isIsomorphic = function (s, t) {
   if (s.length !== t.length) {
-    return false
+    return false;
   }
 
-  const sMap = {}
-  const tMap = {}
+  const sMap = new Map(); // 用于记录 s 中字符到 t 中字符的映射关系
+  const tMap = new Map(); // 用于记录 t 中字符到 s 中字符的映射关系
 
   for (let i = 0; i < s.length; i++) {
-    // 如果 s 中的字符已经和 t 中的字符建立了映射关系，那么就需要判断当前的字符是否和 t 中的字符相等
-    if (sMap.hasOwnProperty(s[i])) {
-      if (sMap[s[i]] !== t[i]) {
-        return false
-      }
+    const sChar = s[i];
+    const tChar = t[i];
+
+    if (!sMap.has(sChar)) {
+      sMap.set(sChar, tChar);
     } else {
-      sMap[s[i]] = t[i]
-      if (tMap.hasOwnProperty(t[i])) {
-        return false
-      } else {
-        tMap[t[i]] = s[i]
+      // 如果 sChar 已经有映射，但映射不正确
+      if (sMap.get(sChar) !== tChar) {
+        return false;
       }
     }
 
-    // if (sMap.hasOwnProperty(s[i])) {
-
-    // } else {
-    //   sMap[s[i]] = t[i]
-    //   tMap[t[i]] = s[i]
-    // }
+    if (!tMap.has(tChar)) {
+      tMap.set(tChar, sChar);
+    } else {
+      // 如果 tChar 已经有映射，但映射不正确
+      if (tMap.get(tChar) !== sChar) {
+        return false;
+      }
+    }
   }
 
+  // 遍历完毕，没有不一致的映射关系，返回true
   return true
 };
 // @lc code=end
