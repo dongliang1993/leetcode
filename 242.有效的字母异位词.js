@@ -15,27 +15,23 @@ var isAnagram = function (s, t) {
 };
 
 var isAnagram = function (s, t) {
-  if (s.length !== t.length) {
-    return false
-  }
-
-  const sMap = {}
-  const tMap = {}
+  const charMap = new Map()
 
   for (let i = 0; i < s.length; i++) {
-    sMap[s[i]] = (sMap[s[i]] || 0) + 1
-    tMap[t[i]] = (tMap[t[i]] || 0) + 1
+    const sum = charMap.get(s[i]) || 0
+    charMap.set(s[i], sum + 1)
   }
 
-  for (const key in sMap) {
-    if (sMap[key] !== tMap[key]) {
+  for (let i = 0; i < t.length; i++) {
+    if (charMap.has(t[i])) {
+      charMap.set(t[i], charMap.get(t[i]) - 1)
+    } else {
       return false
     }
   }
 
-  return true
+  return Array.from(charMap.values()).every(sum => sum === 0)
 };
-
 
 // @lc code=end
 
