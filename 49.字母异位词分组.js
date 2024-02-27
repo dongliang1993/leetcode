@@ -26,7 +26,7 @@ var groupAnagrams = function (strs) {
       hashMap.set(sortedStr, [strs[i]])
     }
   }
-  console.log(hashMap.values())
+
   return Array.from(hashMap.values())
 };
 // @lc code=end
