@@ -10,7 +10,8 @@
  * @return {boolean}
  */
 var isPalindrome = function (s) {
-  let left = 0, right = s.length - 1;
+  let left = 0;
+  let right = s.length - 1;
 
   while (left < right) {
     if (!isValidateChar(s[left])) {
@@ -26,9 +27,11 @@ var isPalindrome = function (s) {
     if (s[left].toLowerCase() !== s[right].toLowerCase()) {
       return false;
     }
+
     left++;
     right--;
   }
+
   return true;
 };
 
