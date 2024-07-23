@@ -17,6 +17,10 @@
  * @return {ListNode}
  */
 
+function ListNode(val, next) {
+  this.val = (val === undefined ? 0 : val)
+  this.next = (next === undefined ? null : next)
+}
 
 var swapPairs = function (head) {
   // 如果链表为空或者只有一个节点，直接返回原链表
@@ -29,7 +33,6 @@ var swapPairs = function (head) {
   dummy.next = head
 
   let current = dummy
-
 
   while (current.next && current.next.next) {
     const prev = current.next
@@ -44,6 +47,21 @@ var swapPairs = function (head) {
 
   return dummy.next
 };
+
+var swapPairs = function (head) {
+  // 如果链表为空或者只有一个节点，直接返回原链表
+  if (!head || !head.next) {
+    return head
+  }
+
+  const first = head
+  const second = head.next
+
+  first.next = swapPairs(second.next)
+  second.next = first
+
+  return second
+}
 // @lc code=end
 
 
