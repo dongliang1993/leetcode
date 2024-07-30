@@ -60,6 +60,8 @@ var maxDepth = function (root) {
         queue.push(current.right)
       }
     }
+
+    depth++
   }
 
   return depth
