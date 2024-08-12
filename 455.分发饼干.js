@@ -11,24 +11,25 @@
  * @return {number}
  */
 var findContentChildren = function (g, s) {
+  // 对数组进行排序
   g.sort((a, b) => a - b);
   s.sort((a, b) => a - b);
 
-  let i = 0;
-  let j = 0;
-  let count = 0;
+  let childIndex = 0;
+  let cookieIndex = 0;
+  let contentChildren = 0;
 
-  while (i < g.length && j < s.length) {
-    if (g[i] <= s[j]) {
-      count++;
-      i++;
-      j++;
-    } else {
-      j++;
+  // 遍历饼干数组
+  while (childIndex < g.length && cookieIndex < s.length) {
+    // 如果当前饼干可以满足当前孩子
+    if (s[cookieIndex] >= g[childIndex]) {
+      contentChildren++;
+      childIndex++;
     }
+    cookieIndex++;
   }
 
-  return count;
+  return contentChildren;
 };
 // @lc code=end
 
