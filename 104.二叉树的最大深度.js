@@ -49,19 +49,21 @@ var maxDepth = function (root) {
   while (queue.length) {
     // 每一层的节点数量
     const levelSize = queue.length
+    // 每遍历一层，深度加 1
+    depth++
+
     // 一次要把一层的节点全部遍历结束
     for (let i = 0; i < levelSize; i++) {
-      const current = queue.shift()
-      if (current && current.left !== null) {
-        queue.push(current.left)
+      const node = queue.shift()
+
+      if (node.left) {
+        queue.push(node.left)
       }
 
-      if (current && current.right !== null) {
-        queue.push(current.right)
+      if (node.right) {
+        queue.push(node.right)
       }
     }
-
-    depth++
   }
 
   return depth
