@@ -18,6 +18,7 @@
  * @return {number[]}
  */
 var preorderTraversal = function (root) {
+  // 二叉树为空直接返回
   if (!root) {
     return [];
   }
@@ -25,34 +26,44 @@ var preorderTraversal = function (root) {
   const result = []
   const stack = [root];
 
+  // 栈不为空时，循环遍历
   while (stack.length) {
+    // 弹出根节点
     const node = stack.pop();
+    // 访问根节点
     result.push(node.val);
 
+    // 先压入右子树，再压入左子树，保证左子树先遍历
     if (node.right) {
       stack.push(node.right)
     }
+
     if (node.left) {
       stack.push(node.left)
     }
   }
+
   return result
 };
 
-var preorderTraversal1 = function (root) {
+
+var preorderTraversal = function (root) {
   const result = []
 
-  function traverse(node) {
+  function traversal(node) {
     if (!node) {
       return
     }
+
     result.push(node.val)
     traverse(node.left)
     traverse(node.right)
   }
 
-  traverse(root)
+  traversal(root)
+
   return result
 };
+
 // @lc code=end
 
