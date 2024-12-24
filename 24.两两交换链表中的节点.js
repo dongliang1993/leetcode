@@ -62,6 +62,30 @@ var swapPairs = function (head) {
 
   return second
 }
+
+var swapPairs = function (head) {
+  if (!head || !head.next) {
+    return head
+  }
+
+  const dummy = new ListNode(-1)
+  dummy.next = head
+
+  let current = dummy
+
+  while (current.next && current.next.next) {
+    const first = current.next
+    const second = current.next.next
+
+    first.next = second.next
+    second.next = first
+    current.next = second
+
+    current = first
+  }
+
+  return dummy.next
+}
 // @lc code=end
 
 

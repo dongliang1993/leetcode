@@ -12,6 +12,11 @@
  *     this.next = (next===undefined ? null : next)
  * }
  */
+
+function ListNode(val, next) {
+  this.val = (val === undefined ? 0 : val)
+  this.next = (next === undefined ? null : next)
+}
 /**
  * @param {ListNode} head
  * @return {ListNode}
@@ -30,5 +35,22 @@ var reverseList = function (head) {
 
   return reversedList
 };
+
+var reverseList = function (head) {
+  if (!head || !head.next) {
+    return head
+  }
+
+  const newHead = reverseList(head.next)
+
+  head.next.next = head
+  head.next = null
+
+  return newHead
+}
 // @lc code=end
 
+
+// @after-stub-for-debug-begin
+module.exports = reverseList;
+// @after-stub-for-debug-end
