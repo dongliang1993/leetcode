@@ -26,5 +26,6 @@ var waysToBuyPensPencils = function (total, cost1, cost2) {
 
   return count
 };
+
 // @lc code=end
 
