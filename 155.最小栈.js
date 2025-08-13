@@ -8,7 +8,7 @@
 
 var MinStack = function () {
   this.stack = [];
-  this.minStack = [Infinity];
+  this.minStack = [];
 };
 
 /** 
@@ -17,7 +17,12 @@ var MinStack = function () {
  */
 MinStack.prototype.push = function (val) {
   this.stack.push(val);
-  this.minStack.push(Math.min(val, this.minStack[this.minStack.length - 1]));
+
+  if (this.minStack.length === 0) {
+    this.minStack.push(val)
+  } else {
+    this.minStack.push(Math.min(val, this.minStack[this.minStack.length - 1]));
+  }
 };
 
 /**

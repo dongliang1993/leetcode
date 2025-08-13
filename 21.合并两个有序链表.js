@@ -24,25 +24,32 @@ function ListNode(val, next) {
 }
 
 var mergeTwoLists = function (list1, list2) {
-  let l1 = list1;
-  let l2 = list2;
+  // 处理边界情况
+  if (!list1) {
+    return list2;
+  }
+
+  if (!list2) {
+    return list1;
+  }
 
   const dummy = new ListNode(-1);
   let current = dummy;
 
-  while (l1 && l2) {
-    if (l2.val <= l1.val) {
-      current.next = l2
-      l2 = l2.next
-      current = current.next
-    } else if (l2.val > l1.val) {
-      current.next = l1
-      l1 = l1.next
-      current = current.next
+  while (list1 && list2) {
+    if (list2.val <= list1.val) {
+      current.next = list2
+      list2 = list2.next
+    } else if (list2.val > list1.val) {
+      current.next = list1
+      list1 = list1.next
     }
+
+    current = current.next
   }
 
-  current.next = l1 ? l1 : l2
+  // 处理剩余节点
+  current.next = list1 ? list1 : list2
 
   return dummy.next
 };

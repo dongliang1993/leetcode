@@ -60,7 +60,7 @@ var findMode = function (root) {
   let maxFreq = 0;
   let maxFreqNodes = []
   let currentCount = 0
-  let currentNode = null
+  let prevNode = null
 
   // 中序遍历
   function inOrderTraverse(node) {
@@ -71,23 +71,24 @@ var findMode = function (root) {
     inOrderTraverse(node.left)
 
     // 处理当前节点
-    if (!currentNode) {
-      currentNode = node
+    // 前一节点为空
+    if (!prevNode) {
       currentCount = 1
     } else {
-      if (currentNode.val === node.val) {
+      if (prevNode.val === node.val) {
         currentCount += 1
       } else {
-        currentNode = node
         currentCount = 1
       }
     }
 
+    prevNode = node
+
     if (currentCount > maxFreq) {
-      maxFreqNodes = [currentNode.val]
+      maxFreqNodes = [prevNode.val]
       maxFreq = currentCount
     } else if (currentCount === maxFreq) {
-      maxFreqNodes.push(currentNode.val)
+      maxFreqNodes.push(prevNode.val)
     }
 
     inOrderTraverse(node.right)

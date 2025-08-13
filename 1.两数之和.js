@@ -15,14 +15,15 @@
 // 如果存在，说明之前已经遍历过一个元素，其值与 diff 相等，那么找到了两个数的组合满足条件，可以返回它们的索引。
 // 如果不存在，将当前元素作为键，其索引作为值存储在 prevMap 中，以便在后续的遍历中进行查找。
 var twoSum = function (nums, target) {
-  const prevMap = {}
+  const prevMap = new Map()
 
   for (let i = 0; i < nums.length; i++) {
     const diff = target - nums[i]
-    if (prevMap[diff] !== undefined) {
-      return [prevMap[diff], i]
+    if (prevMap.has(diff)) {
+      return [prevMap.get(diff), i]
     }
-    prevMap[nums[i]] = i
+
+    prevMap.set(nums[i], i)
   }
 };
 // @lc code=end

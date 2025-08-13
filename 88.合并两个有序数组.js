@@ -37,3 +37,7 @@ var merge = function (nums1, m, nums2, n) {
 };
 // @lc code=end
 
+
+// @after-stub-for-debug-begin
+module.exports = merge;
+// @after-stub-for-debug-end

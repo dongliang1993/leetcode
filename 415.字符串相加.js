@@ -31,6 +31,34 @@ var addStrings = function (num1, num2) {
 
   return result
 };
+
+var addStrings = function (num1, num2) {
+  let result = ''
+  let num1Index = num1.length - 1
+  let num2Index = num2.length - 1
+  let carry = 0
+
+  while (num1Index >= 0 || num2Index >= 0) {
+    // 获取对应位的数字，如果超出长度则补0
+    const digit1 = num1Index >= 0 ? parseInt(num1[num1Index]) : 0;
+    const digit2 = num2Index >= 0 ? parseInt(num2[num2Index]) : 0;
+    // 计算当前位的和
+    const sum = digit1 + digit2 + carry;
+
+    // 更新进位和当前位的结果
+    carry = Math.floor(sum / 10);
+    result = (sum % 10) + result;
+
+    num1Index--
+    num2Index--
+  }
+
+  if (carry) {
+    result = carry + result
+  }
+
+  return result
+}
 // @lc code=end
 
 

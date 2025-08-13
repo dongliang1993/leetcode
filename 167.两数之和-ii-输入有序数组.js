@@ -11,19 +11,31 @@
  * @return {number[]}
  */
 var twoSum = function (numbers, target) {
-  let left = 0;
+  if (!numbers.length) {
+    return []
+  }
+
+  let left = 0
   let right = numbers.length - 1
 
   while (left < right) {
-    if (numbers[left] + numbers[right] === target) {
+    const sum = numbers[left] + numbers[right]
+
+    if (sum === target) {
       return [left + 1, right + 1]
-    } else if (numbers[left] + numbers[right] < target) {
-      left = left + 1
+    } else if (sum > target) {
+      // 和太大，需要减小右指针
+      right--
     } else {
-      right = right - 1
+      // 和太小，需要增加左指针
+      left++
     }
   }
-};
+
+  // 未找到符合条件的两个数
+  return []
+}
+
 // @lc code=end
 
 

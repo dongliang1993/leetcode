@@ -26,5 +26,27 @@ var moveZeroes = function (nums) {
     }
   }
 };
+
+var moveZeroes = function (nums) {
+  let slow = 0
+  let fast = 0
+
+  while (fast < nums.length) {
+    if (nums[fast] !== 0) {
+      const temp = nums[slow]
+      nums[slow] = nums[fast]
+      nums[fast] = temp
+      slow++
+    }
+
+    fast++
+  }
+
+  return nums
+}
 // @lc code=end
 
+
+// @after-stub-for-debug-begin
+module.exports = moveZeroes;
+// @after-stub-for-debug-end

@@ -115,6 +115,42 @@ var flatten = function (root) {
 
   return root
 };
+[1, 2, 5, 3, 4, null, 6]
+function TreeNode(val, left, right) {
+  this.val = (val === undefined ? 0 : val)
+  this.left = (left === undefined ? null : left)
+  this.right = (right === undefined ? null : right)
+}
+
+var flatten = function (root) {
+  if (!root) {
+    return null
+  }
+
+  const stack = [root]
+  const dummy = new TreeNode(-1)
+  let current = dummy
+
+  while (stack.length) {
+    const node = stack.pop()
+
+    // 重新构建单链表
+    current.right = node;
+    current.left = null; // 确保左指针始终为空
+    current = current.right;
+
+    // 先入栈右子节点，再入栈左子节点，保证前序遍历顺序
+    if (node.right) {
+      stack.push(node.right)
+    }
+
+    if (node.left) {
+      stack.push(node.left)
+    }
+  }
+
+  return dummy.next
+}
 // @lc code=end
 
 

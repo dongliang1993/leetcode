@@ -32,6 +32,32 @@ var sortedSquares = function (nums) {
 
   return result
 };
+
+var sortedSquares = function (nums) {
+  // 双指针，分别指向数组的左右两端
+  let left = 0
+  let right = nums.length - 1
+  const result = new Array(nums.length)
+  let index = nums.length - 1
+
+  while (left <= right) {
+    const leftNumSquare = Math.pow(nums[left], 2)
+    const rightNumSquare = Math.pow(nums[right], 2)
+
+    // 比较左右指针对应元素的平方值大小
+    if (rightNumSquare >= leftNumSquare) {
+      result[index] = rightNumSquare
+      right--
+    } else {
+      result[index] = leftNumSquare
+      left++
+    }
+
+    index--
+  }
+
+  return result
+}
 // @lc code=end
 
 

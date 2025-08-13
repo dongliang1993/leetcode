@@ -12,8 +12,6 @@
 var isPalindrome = function (s) {
   let left = 0;
   let right = s.length - 1;
-  // 将所有的大写字符转换为小写字符
-  s = s.toLowerCase();
 
   while (left < right) {
     if (!isValidateChar(s[left])) {
@@ -26,7 +24,7 @@ var isPalindrome = function (s) {
       continue;
     }
 
-    if (s[left] !== s[right]) {
+    if (s[left].toLowerCase() !== s[right].toLowerCase()) {
       return false;
     }
 

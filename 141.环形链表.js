@@ -46,7 +46,7 @@ var hasCycle = function (head) {
  * @param {ListNode} head
  * @return {boolean}
  */
-var hasCycle1 = function (head) {
+var hasCycle = function (head) {
   if (!head) {
     return false;
   }
@@ -66,6 +66,7 @@ var hasCycle1 = function (head) {
   return false
 };
 // @lc code=end
+
 
 
 // @after-stub-for-debug-begin

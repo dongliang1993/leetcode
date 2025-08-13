@@ -39,5 +39,20 @@ var invertTree = function (root) {
   // 再做左右子树的交换操作的，因此这是后序遍历。
   return root;
 };
+
+var invertTree = function (root) {
+  if (!root) {
+    return null
+  }
+
+  const leftNode = root.left
+  root.left = root.right
+  root.right = leftNode
+
+  invertTree(root.left)
+  invertTree(root.right)
+
+  return root
+}
 // @lc code=end
 

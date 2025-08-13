@@ -11,7 +11,6 @@
  */
 const numReg = /\d+/;
 
-// 42-1
 var calculate = function (s) {
   const stack = []
   let op = '+'

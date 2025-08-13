@@ -12,16 +12,20 @@
  * @return {number}
  */
 var numOfSubarrays = function (arr, k, threshold) {
-  let right = 0;
   let left = 0
+  let right = 0;
+  // 用来维护窗口中元素的和
   let sum = 0
   let result = 0
 
   while (right < arr.length) {
+    // 向右移动 right，先将 k 个元素填入窗口中，即 window_sum += arr[right]
     sum = sum + arr[right]
 
+    // 当窗口元素个数为 k 时
     if (right - left + 1 === k) {
-      if ((sum / k) >= threshold) {
+      // 判断窗口内的元素和平均值是否大于等于阈值 threshold
+      if (sum >= k * threshold) {
         result++
       }
 

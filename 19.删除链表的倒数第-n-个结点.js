@@ -20,11 +20,11 @@ var removeNthFromEnd = function (head, n) {
   // 创建一个虚拟头节点，以处理删除头节点的情况
   const dummy = new ListNode(0);
   dummy.next = head;
-  let fast = dummy;
+  let fast = dummy.next;
   let slow = dummy;
 
-  // 快指针先移动 n+1 步，因为要删除的是倒数第 n 个节点的前一个节点
-  for (let i = 0; i <= n; i++) {
+  // 快指针先移动 n 步，因为要删除的是倒数第 n 个节点的前一个节点
+  for (let i = 0; i < n; i++) {
     fast = fast.next;
   }
 

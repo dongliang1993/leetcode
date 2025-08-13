@@ -50,6 +50,35 @@ var isSymmetric = function (root) {
   // 检查根节点的左右子树是否对称
   return isMirror(root.left, root.right)
 };
+
+var isSymmetric = function (root) {
+  if (!root) {
+    return true
+  }
+
+  const queue = [[root.left, root.right]]
+
+  while (queue.length) {
+    const [left, right] = queue.shift()
+
+    if (!left && !right) {
+      continue
+    }
+
+    if (!left || !right) {
+      return false
+    }
+
+    if (left.val !== right.val) {
+      return false
+    }
+
+    queue.push([left.left, right.right])
+    queue.push([left.right, right.left])
+  }
+
+  return true
+}
 // @lc code=end
 
 

@@ -28,6 +28,7 @@ var levelOrder = function (root) {
 
   while (queue.length) {
     // 获取当前层的节点数量 levelSize
+    // 不要使用 queue.length ，因为 queue.length 是不断变化的
     const levelSize = queue.length
     // currentLevel 来存储当前层的节点值
     const currentLevel = []

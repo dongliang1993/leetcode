@@ -14,24 +14,27 @@ var isAnagram = function (s, t) {
   return s.split('').sort().join() === t.split('').sort().join()
 };
 
-var isAnagram = function (s, t) {
-  const charMap = new Map()
-
-  for (let i = 0; i < s.length; i++) {
-    const sum = charMap.get(s[i]) || 0
-    charMap.set(s[i], sum + 1)
+function isAnagram(s, t) {
+  if (s.length !== t.length) {
+    return false;
   }
 
-  for (let i = 0; i < t.length; i++) {
-    if (charMap.has(t[i])) {
-      charMap.set(t[i], charMap.get(t[i]) - 1)
-    } else {
-      return false
+  const count = {};
+
+  for (let char of s) {
+    count[char] = (count[char] || 0) + 1;
+  }
+
+  for (let char of t) {
+    if (!count[char]) {
+      return false;
     }
+
+    count[char]--;
   }
 
-  return Array.from(charMap.values()).every(sum => sum === 0)
-};
+  return true;
+}
 
 // @lc code=end
 

@@ -13,34 +13,11 @@ var validPalindrome = function (s) {
   let left = 0;
   let right = s.length - 1;
 
-  /**
- * 判断删除指定字符后是否可以成为回文 
- * @param {number} left 左边界
- * @param {number} right 右边界
- */
-  function checkPalindrome(left, right) {
-    while (left < right) {
-      if (s[left] != s[right]) {
-        return false;
-      }
-      left++;
-      right--;
-    }
-    return true;
-  }
-
   while (left < right) {
     if (s[left] !== s[right]) {
       // 先尝试删除左字符
-      if (checkPalindrome(left + 1, right)) {
-        return true;
-      }
       // 再尝试删除右字符
-      if (checkPalindrome(left, right - 1)) {
-        return true;
-      }
-
-      return false;
+      return checkPalindrome(s, left + 1, right) || checkPalindrome(s, left, right - 1)
     }
 
     left++;
@@ -49,6 +26,22 @@ var validPalindrome = function (s) {
 
   return true;
 };
+
+/**
+* 判断删除指定字符后是否可以成为回文 
+* @param {number} left 左边界
+* @param {number} right 右边界
+*/
+function checkPalindrome(s, left, right) {
+  while (left < right) {
+    if (s[left] != s[right]) {
+      return false;
+    }
+    left++;
+    right--;
+  }
+  return true;
+}
 // @lc code=end
 
 

@@ -18,27 +18,26 @@ var combine = function (n, k) {
 
   /**
  * 回溯函数
- * @param {number} nums - 上限数字 n
  * @param {number} start - 当前开始位置
  */
-  function backtracking(nums, start) {
+  function backtracking(start) {
     // 如果路径长度达到了 k，则将路径加入结果中
     if (path.length === k) {
-      // 使用slice拷贝一个新数组
+      // 使用 slice 拷贝一个新数组
       result.push(path.slice())
       return
     }
 
-    for (; start <= nums; start++) {
-      path.push(start)
-      // 递归调用，start+1 防止选择重复数字
-      backtracking(nums, start + 1)
+    for (let i = start; i <= n; i++) {
+      path.push(i)
+      // 递归调用，i+1 防止选择重复数字
+      backtracking(i + 1)
       // 回溯，移除最后一个数字
       path.pop()
     }
   }
 
-  backtracking(n, 1)
+  backtracking(1)
 
   return result
 };

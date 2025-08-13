@@ -29,6 +29,7 @@ var threeSum = function (nums) {
       if (sum === 0) {
         result.push([nums[i], nums[left], nums[right]]);
 
+        // 优化4：找到结果后再去重
         // 移动左指针，并跳过相同的元素
         while (left < right && nums[left] === nums[left + 1]) {
           left++;
