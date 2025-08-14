@@ -27,28 +27,5 @@ var middleNode = function (head) {
 
   return slow
 };
-
-/**
- * @param {ListNode} head
- * @return {ListNode}
- */
-var middleNode1 = function (head) {
-  let total = 0
-  let current = head
-
-  while (current) {
-    total += 1
-    current = current.next
-  }
-
-  let count = 0
-  current = head
-  while (count < parseInt(total / 2)) {
-    count += 1
-    current = current.next
-  }
-
-  return current
-};
 // @lc code=end
 

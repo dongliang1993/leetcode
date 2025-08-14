@@ -66,9 +66,6 @@ var hasCycle = function (head) {
   return false
 };
 // @lc code=end
-
-
-
 // @after-stub-for-debug-begin
 module.exports = hasCycle;
 // @after-stub-for-debug-end

@@ -30,5 +30,22 @@ var getIntersectionNode = function (headA, headB) {
   }
   return l1
 };
+
+var getIntersectionNode = function (headA, headB) {
+  if (!headA || !headB) {
+    return null
+  }
+
+  let l1 = headA
+  let l2 = headB
+
+  while (l1 !== l2) {
+    l1 = l1 === null ? l2 : l1.next
+    l2 = l2 === null ? l1 : l2.next
+  }
+
+  return l1
+};
+
 // @lc code=end
 

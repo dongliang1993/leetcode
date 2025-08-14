@@ -19,23 +19,27 @@
 // 使用额外的数组，然后双指针
 var isPalindrome = function (head) {
   const nums = []
-  while (head) {
-    nums.push(head.val)
-    head = head.next
+  let current = head
+
+  while (current) {
+    nums.push(current.val)
+    current = current.next
   }
 
-  let left = 0
+  let left = 0;
   let right = nums.length - 1
+
   while (left < right) {
     if (nums[left] !== nums[right]) {
       return false
     }
+
     left++
     right--
   }
 
   return true
-};
+}
 
 var isPalindrome = function (head) {
   let slow = head
@@ -68,4 +72,6 @@ var isPalindrome = function (head) {
   return true
 };
 // @lc code=end
+
+
 
