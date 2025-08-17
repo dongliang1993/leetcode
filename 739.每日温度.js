@@ -10,23 +10,21 @@
  * @return {number[]}
  */
 var dailyTemperatures = function (temperatures) {
-  const stack = []
-  const result = []
+  const n = temperatures.length
+  const answer = new Array(n).fill(0)
+  const stack = [] // 存索引，保证单调递减
 
-  for (let i = 0; i < temperatures.length; i++) {
-    if (!stack.length) {
-      stack.push(i)
-    } else {
-      while (stack.length && temperatures[i] > temperatures[stack.length - 1]) {
-        const prevIndex = stack.pop()
-        result[ans] = (i - prevIndex)
-      }
-      stack.push(i)
+  for (let i = 0; i < n; i++) {
+    while (stack.length && temperatures[i] > temperatures[stack[stack.length - 1]]) {
+      const prevIndex = stack.pop()
+      answer[prevIndex] = i - prevIndex
     }
+
+    stack.push(i)
   }
 
-  return result
-};
+  return answer
+}
 // @lc code=end
 
 

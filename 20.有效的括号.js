@@ -33,48 +33,6 @@ var isValid = function (s) {
     }
   }
 
-  return stack.length ? false : true
-};
-
-var isValid = function (s) {
-  if (!s) {
-    return true
-  }
-
-  const stack = []
-
-  for (let i = 0; i < s.length; i++) {
-    if (s[i] === '(' || s[i] === '{' || s[i] === '[') {
-      stack.push(s[i])
-      continue
-    }
-
-    const match = stack[stack.length - 1]
-    if (s[i] === ')') {
-      if (match !== '(') {
-        return false
-      } else {
-        stack.pop()
-      }
-    }
-
-    if (s[i] === ']') {
-      if (match !== '[') {
-        return false
-      } else {
-        stack.pop()
-      }
-    }
-
-    if (s[i] === '}') {
-      if (match !== '{') {
-        return false
-      } else {
-        stack.pop()
-      }
-    }
-  }
-
   return stack.length === 0
-}
+};
 // @lc code=end
