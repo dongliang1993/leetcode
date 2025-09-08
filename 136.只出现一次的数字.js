@@ -10,20 +10,24 @@
  * @return {number}
  */
 var singleNumber = function (nums) {
-  nums.sort()
+  nums.sort((a, b) => a - b) // 数字升序排序
 
-  for (let i = 0; i < nums.length; i++) {
-    const nextIndex = i + 1
+  let current = 0
+
+  while (current < nums.length) {
+    const nextIndex = current + 1
+
     if (nextIndex >= nums.length) {
-      return nums[i]
+      return nums[current]
     }
 
-    if (nums[i] !== nums[nextIndex]) {
-      return nums[i]
+    if (nums[current] === nums[nextIndex]) {
+      current += 2 // 跳过一对
+    } else {
+      return nums[current]
     }
-    i++
   }
-};
+}
 // @lc code=end
 
 
