@@ -14,22 +14,15 @@ var areOccurrencesEqual = function (s) {
 
   // 记录每个字符出现的次数
   for (let i = 0; i < s.length; i++) {
-    if (hashMap.get(s[i])) {
-      hashMap.set(s[i], hashMap.get(s[i]) + 1)
-    } else {
-      hashMap.set(s[i], 1)
-    }
+    const count = hashMap.get(s[i]) || 0
+    hashMap.set(s[i], count)
   }
 
   // 将所有出现次数加入集合
-  const numsSet = new Set()
-
-  for (let i = 0; i < s.length; i++) {
-    numsSet.add(hashMap.get(s[i]))
-  }
-
+  const counts = new Set(hashMap.values());
   // 如果集合的大小为1，说明所有字符出现次数相同
-  return numsSet.size === 1
+  return counts.size === 1
 };
+
 // @lc code=end
 
