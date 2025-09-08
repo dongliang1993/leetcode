@@ -29,24 +29,17 @@ var intersection = function (nums1, nums2) {
 };
 
 var intersection = function (nums1, nums2) {
-  const numSet1 = new Map();
-  const result = [];
+  const set1 = new Set(nums1);
+  const result = new Set();
 
-  for (let i = 0; i < nums1.length; i++) {
-    if (!numSet1.has(nums1[i])) {
-      numSet1.set(nums1[i], 1)
+  for (const num of nums2) {
+    if (set1.has(num)) {
+      result.add(num);
     }
   }
 
-  for (let i = 0; i < nums2.length; i++) {
-    if (numSet1.has(nums2[i]) && numSet1.get(nums2[i]) === 1) {
-      numSet1.set(nums2[i], 0)
-      result.push(nums2[i])
-    }
-  }
-
-  return result;
-};
+  return [...result];
+}
 // @lc code=end
 
 
