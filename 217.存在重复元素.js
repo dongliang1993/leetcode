@@ -13,6 +13,7 @@
 // 如果插入一个元素时发现该元素已经存在于哈希表中，则说明存在重复的元素。
 var containsDuplicate = function (nums) {
   const hashSet = new Set()
+
   for (let i = 0; i < nums.length; i++) {
     if (hashSet.has(nums[i])) {
       return true
