@@ -11,10 +11,6 @@
  * @return {number}
  */
 var strStr = function (haystack, needle) {
-  return haystack.indexOf(needle)
-};
-
-var strStr = function (haystack, needle) {
   const needleLength = needle.length
 
   for (let i = 0; i < haystack.length; i++) {
@@ -25,5 +21,21 @@ var strStr = function (haystack, needle) {
 
   return -1
 };
+
+var strStr = function (haystack, needle) {
+  const len = needle.length
+
+  for (let i = 0; i <= haystack.length - len; i++) {
+    if (haystack.slice(i, i + len) === needle) {
+      return i
+    }
+  }
+
+  return -1
+}
 // @lc code=end
 
+
+// @after-stub-for-debug-begin
+module.exports = strStr;
+// @after-stub-for-debug-end
