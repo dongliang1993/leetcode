@@ -10,20 +10,32 @@
  * @return {string}
  */
 var longestCommonPrefix = function (strs) {
-  let commonPrefix = ''
+  if (!strs.length) {
+    return ''
+  }
+
   const first = strs[0]
+  let commonPrefix = ''
 
   for (let i = 0; i < first.length; i++) {
-    const current = first[i]
+    const prefix = first.slice(0, i + 1)
+
     for (let j = 1; j < strs.length; j++) {
-      if (current !== strs[j][i]) {
+      const str = strs[j]
+
+      if (!str.startsWith(prefix)) {
         return commonPrefix
       }
     }
-    commonPrefix = commonPrefix + current
+
+    commonPrefix = prefix
   }
 
   return commonPrefix
-};
+}
 // @lc code=end
 
+
+// @after-stub-for-debug-begin
+module.exports = longestCommonPrefix;
+// @after-stub-for-debug-end
