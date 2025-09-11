@@ -22,31 +22,30 @@ var levelOrderBottom = function (root) {
     return []
   }
 
+  const stack = [root]
   const result = []
-  const queue = [root]
 
-  while (queue.length) {
-    const levelSize = queue.length
+  while (stack.length) {
+    const levelSize = stack.length
     const currentLevel = []
 
     for (let i = 0; i < levelSize; i++) {
-      const node = queue.shift()
+      const node = stack.shift()
       currentLevel.push(node.val)
 
       if (node.left) {
-        queue.push(node.left)
+        stack.push(node.left)
       }
 
       if (node.right) {
-        queue.push(node.right)
+        stack.push(node.right)
       }
     }
 
-    // unshift 是关键步骤，它将当前层插入到结果数组的开头位置，从而实现倒序排列。
-    result.unshift(currentLevel)
+    result.push(currentLevel)
   }
 
-  return result
-};
+  return result.reverse();
+}
 // @lc code=end
 
