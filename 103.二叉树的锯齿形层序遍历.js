@@ -30,41 +30,41 @@
  * @return {number[][]}
  */
 var zigzagLevelOrder = function (root) {
-  // 处理边界情况
   if (!root) {
     return []
   }
 
   const result = []
-  const queue = [root]
-  let isLeftToRight = true;  // 更清晰的变量命名
+  const stack = [root]
+  let leftToRight = true
 
-  while (queue.length) {
+  while (stack.length) {
+    const levelSize = stack.length
     const currentLevel = []
-    const levelSize = queue.length
 
-    // 处理当前层的所有节点
     for (let i = 0; i < levelSize; i++) {
-      const node = queue.shift()
-      // 根据方向决定插入方式
-      isLeftToRight ? currentLevel.push(node.val) : currentLevel.unshift(node.val)
+      const node = stack.shift()
+      currentLevel.push(node.val)
 
-      // 按照固定顺序添加子节点
       if (node.left) {
-        queue.push(node.left)
+        stack.push(node.left)
       }
 
       if (node.right) {
-        queue.push(node.right)
+        stack.push(node.right)
       }
     }
 
-    // 切换遍历方向
-    isLeftToRight = !isLeftToRight;
-    result.push(currentLevel)
+    // 根据方向决定是否翻转
+    if (!leftToRight) {
+      currentLevel.reverse();
+    }
+
+    result.push(currentLevel);
+    leftToRight = !leftToRight; // 切换方向
   }
 
   return result
-};
+}
 // @lc code=end
 
