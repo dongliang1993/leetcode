@@ -23,41 +23,36 @@ var pathSum = function (root, targetSum) {
     return []
   }
 
-  const queue = [{ node: root, sum: root.val, path: [root.val] }]
   const result = []
+  const stack = [{ node: root, sum: root.val, path: [root.val] }]
 
-  while (queue.length) {
-    const levelSize = queue.length
+  while (stack.length) {
+    const { node, sum, path } = stack.pop()
 
-    for (let i = 0; i < levelSize; i++) {
-      const { node, sum, path } = queue.shift()
+    if (!node.left && !node.right && sum === targetSum) {
+      result.push(path)
+      continue
+    }
 
-      if (!node.left && !node.right) {
-        if (sum === targetSum) {
-          result.push(path)
-        }
-      }
+    if (node.right) {
+      stack.push({
+        node: node.right,
+        sum: sum + node.right.val,
+        path: [...path, node.right.val]
+      })
+    }
 
-      if (node.left) {
-        queue.push({
-          node: node.left,
-          sum: sum + node.left.val,
-          path: [...path, node.left.val]
-        })
-      }
-
-      if (node.right) {
-        queue.push({
-          node: node.right,
-          sum: sum + node.right.val,
-          path: [...path, node.right.val]
-        })
-      }
+    if (node.left) {
+      stack.push({
+        node: node.left,
+        sum: sum + node.left.val,
+        path: [...path, node.left.val]
+      })
     }
   }
 
   return result
-};
+}
 
 var pathSum = function (root, targetSum) {
   // 处理边界情况
@@ -68,7 +63,7 @@ var pathSum = function (root, targetSum) {
   // DFS 辅助函数
   const dfs = (node, remainingSum, currentPath) => {
     // 处理叶子节点
-    if (!node.left && !node.right) {
+    if (!node.left && !node.right && remainingSum === node.val) {
       if (remainingSum === node.val) {
         result.push([...currentPath, node.val]);
       }
@@ -89,6 +84,36 @@ var pathSum = function (root, targetSum) {
   dfs(root, targetSum, []);
   return result;
 };
+
+var pathSum = function (root, targetSum) {
+  if (!root) {
+    return []
+  }
+
+  const result = []
+
+  function dfs(node, remainSum, path) {
+    path.push(node.val)
+
+    if (!node.left && !node.right && remainSum === node.val) {
+      result.push([...path])
+    }
+
+    if (node.left) {
+      dfs(node.left, remainSum - node.val, path)
+    }
+
+    if (node.right) {
+      dfs(node.right, remainSum - node.val, path)
+    }
+
+    path.pop()
+  }
+
+  dfs(root, targetSum, [])
+
+  return result
+}
 // @lc code=end
 
 
